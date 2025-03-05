@@ -17,16 +17,17 @@ def char_count(words) -> dict:
     return hashmap
 
 
-def main() -> int:
-    path_to_file = "books/frankenstein.txt"
+def main(filepath) -> int:
+    # path_to_file = "books/frankenstein.txt"
 
-    file_contents = read_file_to_string(path_to_file)
+
+    file_contents = read_file_to_string(filepath)
     char_dict = char_count(file_contents)
 
     # print(file_contents)
     # print(word_count(file_contents))
     # char_count(file_contents)
-    header = (f"--- Begin report of {path_to_file} ---")
+    header = (f"--- Begin report of {filepath} ---")
     words_found = (f"{word_count(file_contents)} words found in the document")
     
 
@@ -35,11 +36,15 @@ def main() -> int:
     print()
     for key in char_dict:
         if key.isalpha():
-            print(f"The '{key}' character was found {char_dict[key]} times")
+            print(f"{key}: {char_dict[key]}")
     print(f"--- End report ---")
 
 
     return 0
 
 if __name__ == '__main__':
-    sys.exit(main())
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    sys.exit(main(sys.argv[1]))
