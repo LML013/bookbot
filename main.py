@@ -1,13 +1,10 @@
 import sys
+from stats import word_count
 
 def read_file_to_string(filepath) -> str:
     with open(filepath) as f:
         file_contents = f.read()
         return file_contents
-
-def word_count(words) -> int:
-    word_split = words.split()
-    return len(word_split)
 
 def char_count(words) -> dict:
     words = words.lower()
